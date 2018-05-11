@@ -1,6 +1,7 @@
 import React from 'react'
-import {DialogContainer, Toolbar, Button, Grid, Cell, Paper} from 'react-md';
+import {DialogContainer, Toolbar, Button, Grid, Cell, Paper, TextField} from 'react-md';
 import {formatLatitude, formatLongitude} from 'latlon-formatter';
+import * as _ from 'lodash';
 
 export class ReportDialog extends React.Component {
   constructor(props) {
@@ -14,10 +15,23 @@ export class ReportDialog extends React.Component {
     this.setState({report});
   };
 
+  reportFieldChange = (reportId, value, event) => {
+    const newReport = _.cloneDeep(this.state.report);
+    newReport.reports[reportId] = value;
+    this.setState({report: newReport});
+  };
+
   renderChildReports = (report) => {
     return report.reports.map(childReport => {
       return <Grid>
-        <Cell offset={1} size={10}>{childReport.reportDetails}</Cell>
+        <Cell size={12}>
+          <TextField label={`Report ${childReport.reportID}`}
+                     value={childReport.reportDetails}
+                     rows={2}
+                     maxRows={6}
+                     onChange={(value, event) => this.reportFieldChange(childReport.reportID, value, event)}
+          />
+        </Cell>
       </Grid>
     });
   };
@@ -25,7 +39,7 @@ export class ReportDialog extends React.Component {
   renderDetails = (report) => {
     return Object.entries(report.details).map(([key, value]) => {
       return <Grid>
-        <Cell offset={1} size={2}>{key}</Cell>
+        <Cell size={4}>{key}</Cell>
         <Cell size={8}>{value}</Cell>
       </Grid>
     });
@@ -51,16 +65,21 @@ export class ReportDialog extends React.Component {
                  actions={<Button flat onClick={() => this.props.onHide(report)}>Save</Button>}
         />
         <Paper className="fillParent md-toolbar-relative" zDepth={1}>
+          <h1>Details</h1>
+          <h2>{report.title}</h2>
+          <h3>{lat} {lon}</h3>
           <Grid>
-            <Cell size={2} offset={1}>Title</Cell>
-            <Cell size={8}>{report.title}</Cell>
+            <Cell size={6}>
+              <h2>Reports</h2>
+              {this.renderChildReports(report)}
+            </Cell>
+            <Cell size={6}>
+              <h2>Details</h2>
+              {this.renderDetails(report)}
+            </Cell>
           </Grid>
-          <Grid>
-            <Cell size={2} offset={1}>Location</Cell>
-            <Cell size={8}>{lat} {lon}</Cell>
-          </Grid>
-          {this.renderChildReports(report)}
-          {this.renderDetails(report)}
+
+
         </Paper>
       </DialogContainer>
     }
