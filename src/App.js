@@ -68,7 +68,7 @@ class App extends Component {
     return (
       <div>
         <div className="mapArea">
-          <div className="searchArea">
+          <div className="searchArea" style={{display: this.state.selectedReport ? "none" : "block"}}>
             <SearchBar value={this.state.filterText} onChange={(value, event) => this.filterChange(value, event)}/>
           </div>
           <div className="mapViewArea">
