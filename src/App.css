@@ -30,3 +30,10 @@
   padding-left: 5px;
   padding-right: 5px;
 }
+
+.fillParent {
+  display: block;
+  height: calc(100% - 4px);
+  width: calc(100% - 4px);
+  margin: 2px;
+}

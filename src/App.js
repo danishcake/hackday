@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'react-md/dist/react-md.blue_grey-amber.min.css'
-import { Map } from './components/Map';
-import { SearchBar } from './components/SearchBar';
-import { DetailsPane } from  './components/DetailsPane';
+import {Map} from './components/Map';
+import {SearchBar} from './components/SearchBar';
+import {DetailsPane} from  './components/DetailsPane';
+import {Reports} from './data/Reports';
 
 
 class App extends Component {
@@ -11,7 +12,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      filter_text: ""
+      filter_text: "",
+      reports: Reports
     };
   }
 
@@ -29,7 +31,7 @@ class App extends Component {
           <Map/>
         </div>
         <div className="detailsArea">
-          <DetailsPane/>
+          <DetailsPane reports={this.state.reports}/>
         </div>
       </div>
     );
