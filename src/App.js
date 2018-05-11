@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import 'react-md/dist/react-md.blue_grey-amber.min.css'
 import { Map } from './components/Map';
 import { SearchBar } from './components/SearchBar';
 import { DetailsPane } from  './components/DetailsPane';
@@ -14,16 +15,20 @@ class App extends Component {
     };
   }
 
+  filter_change(value, event) {
+    this.setState({...this.state, filter_text: value});
+  }
+
   render() {
     return (
       <div>
-        <div class="mapArea">
-          <div class="searchArea">
-            <SearchBar/>
+        <div className="mapArea">
+          <div className="searchArea">
+            <SearchBar value={this.state.filter_text} onChange={(value, event) => this.filter_change(value, event)}/>
           </div>
           <Map/>
         </div>
-        <div class="detailsArea">
+        <div className="detailsArea">
           <DetailsPane/>
         </div>
       </div>
