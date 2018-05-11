@@ -7,6 +7,7 @@ import * as _ from 'lodash';
 import { Button } from 'react-md';
 
 
+
 // Webpack/leaflet fix
 // See https://github.com/Leaflet/Leaflet/issues/4968
 import L from 'leaflet';
@@ -55,7 +56,6 @@ export class MapView extends React.Component {
           />
           <MarkerGroup points={this.props} />
         </Map>
-
       </div>
     );
   }

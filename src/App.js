@@ -11,6 +11,7 @@ import {ReportDialog} from "./components/ReportDialog/index";
 import { MapView } from './components/Map/map';
 
 
+
 class App extends Component {
   constructor(props) {
     super(props);
