@@ -3,13 +3,12 @@ import './App.css';
 import 'react-md/dist/react-md.blue_grey-amber.min.css'
 import 'material-icons/iconfont/MaterialIcons-Regular.woff2'
 import 'material-icons/iconfont/material-icons.css'
-import {Map} from './components/Map';
 import {SearchBar} from './components/SearchBar';
 import {DetailsPane} from  './components/DetailsPane';
 import {Reports} from './data/Reports';
 import {FilterData} from './data/Filter';
 import {ReportDialog} from "./components/ReportDialog/index";
-
+import { MapView } from './components/Map/map';
 
 class App extends Component {
   constructor(props) {
@@ -53,7 +52,9 @@ class App extends Component {
           <div className="searchArea">
             <SearchBar value={this.state.filterText} onChange={(value, event) => this.filterChange(value, event)}/>
           </div>
-          <Map/>
+          <div className="mapViewArea">
+            <MapView className="mapView"/>
+          </div>
         </div>
         <div className="detailsArea">
           <DetailsPane reports={this.state.filteredReports} showReport={this.showReport}/>
