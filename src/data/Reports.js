@@ -12,6 +12,6 @@ export const Reports = [
   {
     location: { latitude: 50.5, longitude: -2.5},
     title: "Report 3",
-    reports: ["How is this not done"]
+    reports: ["How is this not done", "Two reports!"]
   },
 ];

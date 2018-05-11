@@ -1,5 +1,6 @@
 import React from 'react'
 import {Paper, List, ListItem, Subheader} from 'react-md';
+import {formatLatitude, formatLongitude} from 'latlon-formatter';
 
 export class DetailsPane extends React.Component {
   constructor(props) {
@@ -7,8 +8,13 @@ export class DetailsPane extends React.Component {
   }
 
   renderItems(reports) {
-    return reports.map(report => <ListItem primaryText={report.title}
-                                           secondaryText={`${report.location.latitude} ${report.location.longitude}`}/>);
+    return reports.map(report => {
+      const lat = formatLatitude(report.location.latitude, {degrees: true});
+      const lon = formatLongitude(report.location.longitude, {degrees: true});
+
+      return <ListItem primaryText={report.title}
+                       secondaryText={`${lat} ${lon}`}/>;
+    });
   }
 
   render() {
