@@ -26,27 +26,16 @@ export class MapView extends React.Component {
    constructor (props) {
     super(props);
     this.state = {
-      lat: 51.505,
-      lng: -0.09,
-      zoom: 13
+      lat: 53.8008,
+      lng: -1.5491,
+      zoom: 11
     }
   }
 
   render() {
+    console.dir(this.props)
     const position = [this.state.lat, this.state.lng]
-    const markers = this.props.points.map((point) => {
-      <Marker position={point}>
-        <Popup >
-        <div class="summary">
-            A pretty CSS3 popup.<br/>Easily customizable.
-            <div class="buttonHolder">
-              <Button raised>Focus</Button>
-              <Button raised>View</Button>
-            </div>
-          </div>     
-        </Popup>
-      </Marker>
-    })
+
     return (
       <div className="mapContainer">
         <Map center={position} zoom={this.state.zoom}>
@@ -54,7 +43,7 @@ export class MapView extends React.Component {
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-          <MarkerGroup points={this.props} />
+          <MarkerGroup reports={this.props.reports} view={this.props.view} viewSummary={this.props.viewSummary}/>
         </Map>
       </div>
     );
@@ -62,15 +51,16 @@ export class MapView extends React.Component {
 }
 
 function MarkerGroup(props){
-  const points = props.points.points;
-  const markers = points.map((point, index)=>{
-    return (<Marker position={point} key={index}>
+  const reports = props.reports;
+  const markers = reports.map((report, index)=>{
+    return (<Marker position={report.location} key={index}>
         <Popup >
-        <div class="summary">
-            A pretty CSS3 popup.<br/>Easily customizable.
+        <div className="summary">
+          <h4>{report.title}</h4>
+            Description: {report.details.additionalDetails}<br/>
+            Reports: {report.reports.length}
             <div class="buttonHolder">
-              <Button raised>Focus</Button>
-              <Button raised>View</Button>
+              <Button raised onClick={()=>props.view(report)}>View</Button>
             </div>
           </div>     
         </Popup>
@@ -78,6 +68,6 @@ function MarkerGroup(props){
   }
   );
   return (
-    <MarkerClusterGroup zoomToBoundsOnClick={false} onClusterClick={(e) => props.points.clickEvent(e)}>{markers}</MarkerClusterGroup>
+    <MarkerClusterGroup zoomToBoundsOnClick={false} onClusterClick={()=>props.viewSummary()}>{markers}</MarkerClusterGroup>
   )
 }

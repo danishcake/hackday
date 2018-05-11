@@ -20,4 +20,5 @@ h1, h2, p {
 .buttonHolder{
     display: flex;
     flex-flow: row;
+    align-items: center;
 }
