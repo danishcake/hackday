@@ -15,6 +15,7 @@
   left: calc(65%);
   top: 0px;
   background-color: white;
+  overflow: scroll;
 }
 
 .searchArea {
