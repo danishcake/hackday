@@ -19,7 +19,17 @@ class App extends Component {
       filterText: "",
       reports: Reports,
       filteredReports: Reports,
-      selectedReport: null
+      selectedReport: null,
+	  points:[
+          {lat: 51.505, lng: -0.09},
+          {lat: 51.506, lng: -0.15},
+          {lat: 55.505, lng: -0.09},
+          {lat: 12.505, lng: -0.09},
+          {lat: 51.510, lng: -0.09},
+          {lat: 51.500, lng: -0.09},
+          {lat: 51.505, lng: -0.010},
+          {lat: 51.505, lng: -0.011},
+        ]
     };
   }
 
@@ -30,6 +40,13 @@ class App extends Component {
       filterText: value,
       filteredReports: filteredReports
     });
+  }
+
+  onMarkerClick(e){
+    console.dir(e);
+    
+    alert('Zooming');
+    
   }
 
   showReport = (report) => {
@@ -54,7 +71,7 @@ class App extends Component {
             <SearchBar value={this.state.filterText} onChange={(value, event) => this.filterChange(value, event)}/>
           </div>
           <div className="mapViewArea">
-            <MapView className="mapView"/>
+            <MapView className="mapView" points={this.state.points} clickEvent={(e) =>this.onMarkerClick(e)}/>
           </div>
         </div>
         <div className="detailsArea">

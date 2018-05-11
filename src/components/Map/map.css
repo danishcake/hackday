@@ -1,11 +1,23 @@
 .mapContainer{
     height: calc(100%);
 }
+
 h1, h2, p {
         text-align: center;
-      }
+}
+
 .leaflet-container {
-    height: 80%;
-    width: 90%;
+    height: 100%;
+    width: 100%;
     margin: 0 auto;
+}
+
+.summary{
+    display: flex;
+    flex-flow: column;
+}
+
+.buttonHolder{
+    display: flex;
+    flex-flow: row;
 }

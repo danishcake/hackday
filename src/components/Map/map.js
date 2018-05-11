@@ -1,8 +1,10 @@
 import React from 'react'
 import { Marker, Map, Popup, TileLayer} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 import './map.css'
 import * as _ from 'lodash';
+import { Button } from 'react-md';
 
 
 // Webpack/leaflet fix
@@ -31,6 +33,19 @@ export class MapView extends React.Component {
 
   render() {
     const position = [this.state.lat, this.state.lng]
+    const markers = this.props.points.map((point) => {
+      <Marker position={point}>
+        <Popup >
+        <div class="summary">
+            A pretty CSS3 popup.<br/>Easily customizable.
+            <div class="buttonHolder">
+              <Button raised>Focus</Button>
+              <Button raised>View</Button>
+            </div>
+          </div>     
+        </Popup>
+      </Marker>
+    })
     return (
       <div className="mapContainer">
         <Map center={position} zoom={this.state.zoom}>
@@ -38,13 +53,31 @@ export class MapView extends React.Component {
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-          <Marker position={position}>
-            <Popup>
-              <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
-            </Popup>
-          </Marker>
+          <MarkerGroup points={this.props} />
         </Map>
-      </div>   
+
+      </div>
     );
   }
+}
+
+function MarkerGroup(props){
+  const points = props.points.points;
+  const markers = points.map((point, index)=>{
+    return (<Marker position={point} key={index}>
+        <Popup >
+        <div class="summary">
+            A pretty CSS3 popup.<br/>Easily customizable.
+            <div class="buttonHolder">
+              <Button raised>Focus</Button>
+              <Button raised>View</Button>
+            </div>
+          </div>     
+        </Popup>
+      </Marker>)
+  }
+  );
+  return (
+    <MarkerClusterGroup zoomToBoundsOnClick={false} onClusterClick={(e) => props.points.clickEvent(e)}>{markers}</MarkerClusterGroup>
+  )
 }
