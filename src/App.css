@@ -22,8 +22,11 @@
   display: block;
   position: absolute;
   width: calc(100% - 30px);
-  height: calc(40px);
+  height: calc(65px);
   left: 15px;
   top: 15px;
-  background-color: palegreen;
+  background-color: #FFFFFF7F;
+  border-radius: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
