@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'react-md/dist/react-md.blue_grey-amber.min.css'
-import { Map } from './components/Map';
-import { SearchBar } from './components/SearchBar';
-import { DetailsPane } from  './components/DetailsPane';
+import 'material-icons/iconfont/MaterialIcons-Regular.woff2'
+import 'material-icons/iconfont/material-icons.css'
+import {Map} from './components/Map';
+import {SearchBar} from './components/SearchBar';
+import {DetailsPane} from  './components/DetailsPane';
+import {Reports} from './data/Reports';
+import {FilterData} from './data/Filter';
+import {ReportDialog} from "./components/ReportDialog/index";
 
 
 class App extends Component {
@@ -11,26 +16,49 @@ class App extends Component {
     super(props);
 
     this.state = {
-      filter_text: ""
+      filterText: "",
+      reports: Reports,
+      filteredReports: Reports,
+      selectedReport: null
     };
   }
 
-  filter_change(value, event) {
-    this.setState({...this.state, filter_text: value});
+  filterChange(value, event) {
+    const filteredReports = FilterData(this.state.reports, value, null);
+
+    this.setState({
+      filterText: value,
+      filteredReports: filteredReports
+    });
   }
+
+  showReport = (report) => {
+    this.setState({
+      selectedReport: report
+    });
+  };
+
+  hideReport = (reportToSave) => {
+    // TODO: If reportToSave set, replace selected report with the edited version
+
+    this.setState({
+      selectedReport: null
+    });
+  };
 
   render() {
     return (
       <div>
         <div className="mapArea">
           <div className="searchArea">
-            <SearchBar value={this.state.filter_text} onChange={(value, event) => this.filter_change(value, event)}/>
+            <SearchBar value={this.state.filterText} onChange={(value, event) => this.filterChange(value, event)}/>
           </div>
           <Map/>
         </div>
         <div className="detailsArea">
-          <DetailsPane/>
+          <DetailsPane reports={this.state.filteredReports} showReport={this.showReport}/>
         </div>
+        <ReportDialog report={this.state.selectedReport} onHide={this.hideReport}/>
       </div>
     );
   }
