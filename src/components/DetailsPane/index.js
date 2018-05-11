@@ -10,7 +10,7 @@ export class DetailsPane extends React.Component {
   renderItems(reports, showReport) {
     return reports.map(report => {
       const lat = formatLatitude(report.location.lat, {degrees: true});
-      const lon = formatLongitude(report.location.long, {degrees: true});
+      const lon = formatLongitude(report.location.lng, {degrees: true});
 
       return <ListItem primaryText={report.title}
                        secondaryText={`${lat} ${lon}`}

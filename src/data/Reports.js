@@ -9071,7 +9071,7 @@ export const Reports = [
   {
     "title": "Hyde Park Methodist Church Hall",
     "location": {
-      "long": "-1.568043723488350",
+      "lng": "-1.568043723488350",
       "lat": "53.806519277940400"
     },
     "details": {

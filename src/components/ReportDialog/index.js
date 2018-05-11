@@ -53,7 +53,7 @@ export class ReportDialog extends React.Component {
     } else {
       const report = this.state.report || this.props.report;
       const lat = formatLatitude(report.location.lat, {degrees: true});
-      const lon = formatLongitude(report.location.long, {degrees: true});
+      const lon = formatLongitude(report.location.lng, {degrees: true});
 
       return <DialogContainer visible={this.props.report !== null}
                               id="reportDialog"
