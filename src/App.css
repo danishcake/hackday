@@ -1,28 +1,29 @@
-.App {
-  text-align: center;
+.mapArea {
+  display: block;
+  position: absolute;
+  width: calc(65%);
+  height: calc(100%);
+  left: 0px;
+  top: 0px;
+  background-color: palevioletred;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.detailsArea {
+  display: block;
+  position: absolute;
+  width: calc(35%);
+  height: calc(100%);
+  left: calc(65%);
+  top: 0px;
+  background-color: palegoldenrod;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.searchArea {
+  display: block;
+  position: absolute;
+  width: calc(100% - 30px);
+  height: calc(40px);
+  left: 15px;
+  top: 15px;
+  background-color: palegreen;
 }
