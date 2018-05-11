@@ -1,11 +1,10 @@
 .mapArea {
-  display: block;
-  position: absolute;
   width: calc(65%);
   height: calc(100%);
   left: 0px;
   top: 0px;
   background-color: palevioletred;
+  position:absolute;
 }
 
 .detailsArea {
@@ -19,8 +18,8 @@
 }
 
 .searchArea {
-  display: block;
-  position: absolute;
+  float: left;
+  margin: 16px;
   width: calc(100% - 30px);
   height: calc(65px);
   left: 15px;
@@ -29,4 +28,8 @@
   border-radius: 3px;
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.mapViewArea {
+  height: calc(100%);
 }
