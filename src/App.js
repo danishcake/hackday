@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import 'react-md/dist/react-md.blue_grey-amber.min.css'
+import 'react-md/dist/react-md.blue_grey-amber.min.css';
 import 'material-icons/iconfont/MaterialIcons-Regular.woff2'
 import 'material-icons/iconfont/material-icons.css'
 import {SearchBar} from './components/SearchBar';
@@ -9,6 +9,7 @@ import {Reports} from './data/Reports';
 import {FilterData} from './data/Filter';
 import {ReportDialog} from "./components/ReportDialog/index";
 import { MapView } from './components/Map/map';
+
 
 class App extends Component {
   constructor(props) {
