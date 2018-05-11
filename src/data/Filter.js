@@ -15,7 +15,7 @@ export function FilterData(reports, filterText, mapBounds) {
       return true;
     }
 
-    if (report.reports.some(childReport => childReport.includes(filterText))) {
+    if (report.reports.some(childReport => childReport.reportDetails.includes(filterText))) {
       return true;
     }
 

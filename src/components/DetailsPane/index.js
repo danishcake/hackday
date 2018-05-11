@@ -7,14 +7,15 @@ export class DetailsPane extends React.Component {
     super(props)
   }
 
-  renderItems(reports) {
+  renderItems(reports, showReport) {
     return reports.map(report => {
-      const lat = formatLatitude(report.location.latitude, {degrees: true});
-      const lon = formatLongitude(report.location.longitude, {degrees: true});
+      const lat = formatLatitude(report.location.lat, {degrees: true});
+      const lon = formatLongitude(report.location.long, {degrees: true});
 
       return <ListItem primaryText={report.title}
                        secondaryText={`${lat} ${lon}`}
-                       leftAvatar={<Avatar suffix="deep-purple">{report.reports.length}</Avatar>}/>;
+                       leftAvatar={<Avatar suffix="deep-purple">{report.reports.length}</Avatar>}
+                       onClick={() => showReport(report)}/>;
     });
   }
 
@@ -25,7 +26,7 @@ export class DetailsPane extends React.Component {
       <Paper zdepth={1} className="fillParent">
         <List>
           <Subheader primaryText="Reports"/>
-          {this.renderItems(props.reports)}
+          {this.renderItems(props.reports, props.showReport)}
         </List>
       </Paper>
     </div>

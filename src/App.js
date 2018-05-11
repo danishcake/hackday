@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'react-md/dist/react-md.blue_grey-amber.min.css'
+import 'material-icons/iconfont/MaterialIcons-Regular.woff2'
+import 'material-icons/iconfont/material-icons.css'
 import {Map} from './components/Map';
 import {SearchBar} from './components/SearchBar';
 import {DetailsPane} from  './components/DetailsPane';
 import {Reports} from './data/Reports';
 import {FilterData} from './data/Filter';
+import {ReportDialog} from "./components/ReportDialog/index";
 
 
 class App extends Component {
@@ -15,7 +18,8 @@ class App extends Component {
     this.state = {
       filterText: "",
       reports: Reports,
-      filteredReports: Reports
+      filteredReports: Reports,
+      selectedReport: null
     };
   }
 
@@ -23,12 +27,24 @@ class App extends Component {
     const filteredReports = FilterData(this.state.reports, value, null);
 
     this.setState({
-      ...this.state,
       filterText: value,
       filteredReports: filteredReports
     });
   }
 
+  showReport = (report) => {
+    this.setState({
+      selectedReport: report
+    });
+  };
+
+  hideReport = (reportToSave) => {
+    // TODO: If reportToSave set, replace selected report with the edited version
+
+    this.setState({
+      selectedReport: null
+    });
+  };
 
   render() {
     return (
@@ -40,8 +56,9 @@ class App extends Component {
           <Map/>
         </div>
         <div className="detailsArea">
-          <DetailsPane reports={this.state.filteredReports}/>
+          <DetailsPane reports={this.state.filteredReports} showReport={this.showReport}/>
         </div>
+        <ReportDialog report={this.state.selectedReport} onHide={this.hideReport}/>
       </div>
     );
   }
