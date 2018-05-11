@@ -31,6 +31,8 @@ export class ReportDialog extends React.Component {
                      maxRows={6}
                      onChange={(value, event) => this.reportFieldChange(childReport.reportID, value, event)}
           />
+          <br/>
+          <a href={childReport.url}>{childReport.url}</a>
         </Cell>
       </Grid>
     });
