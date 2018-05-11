@@ -15,9 +15,9 @@ export class ReportDialog extends React.Component {
     this.setState({report});
   };
 
-  reportFieldChange = (reportId, value, event) => {
+  reportFieldChange = (reportID, value, event) => {
     const newReport = _.cloneDeep(this.state.report);
-    newReport.reports[reportId] = value;
+    newReport.reports[reportID] = {reportID, reportDetails: value};
     this.setState({report: newReport});
   };
 
