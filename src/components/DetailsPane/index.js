@@ -1,5 +1,5 @@
 import React from 'react'
-import {Paper, List, ListItem, Subheader} from 'react-md';
+import {Avatar, Paper, List, ListItem, Subheader} from 'react-md';
 import {formatLatitude, formatLongitude} from 'latlon-formatter';
 
 export class DetailsPane extends React.Component {
@@ -13,7 +13,8 @@ export class DetailsPane extends React.Component {
       const lon = formatLongitude(report.location.longitude, {degrees: true});
 
       return <ListItem primaryText={report.title}
-                       secondaryText={`${lat} ${lon}`}/>;
+                       secondaryText={`${lat} ${lon}`}
+                       leftAvatar={<Avatar suffix="deep-purple">{report.reports.length}</Avatar>}/>;
     });
   }
 
