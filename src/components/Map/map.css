@@ -2,10 +2,6 @@
     height: calc(100%);
 }
 
-h1, h2, p {
-        text-align: center;
-}
-
 .leaflet-container {
     height: 100%;
     width: 100%;
