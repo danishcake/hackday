@@ -1,37 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
-import 'react-md/dist/react-md.blue_grey-amber.min.css'
-import { Map } from './components/Map';
-import { SearchBar } from './components/SearchBar';
-import { DetailsPane } from  './components/DetailsPane';
+import { Switch, Route } from 'react-router-dom'
+import Home from './pages/home/home'
+import Details from './pages/details/details'
 
 
 class App extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      filter_text: ""
-    };
-  }
-
-  filter_change(value, event) {
-    this.setState({...this.state, filter_text: value});
   }
 
   render() {
     return (
-      <div>
-        <div className="mapArea">
-          <div className="searchArea">
-            <SearchBar value={this.state.filter_text} onChange={(value, event) => this.filter_change(value, event)}/>
-          </div>
-          <Map/>
-        </div>
-        <div className="detailsArea">
-          <DetailsPane/>
-        </div>
-      </div>
+      <Switch>
+        <Route exact path='/' component={Home}/>
+        <Route path='/details' component={Details}/>
+      </Switch>      
     );
   }
 }
